@@ -19,7 +19,9 @@
         % Date
         \small{Revision: \revision} \\
         \small{Created: \@date} \\
-        \small{Updated: \daterevised}
+        \ifdefined\daterevised
+            \small{Updated: \daterevised}
+        \fi
         \vfill
 
         % Image and Department
