@@ -1,0 +1,13 @@
+# Ignore latex intermediate build file types
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# Ignore any build folders
+build

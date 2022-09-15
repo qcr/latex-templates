@@ -1,0 +1,33 @@
+\makeatletter % required to gain access to in-built variables \title, \date, \author, see https://tex.stackexchange.com/questions/10130/use-the-values-of-title-author-and-date-on-a-custom-title-page
+\begin{titlepage}
+    \begin{flushright}
+
+        % Technical note details - if provided
+        \ifdefined\technotedetails
+            \large{\textbf{\technotedetails}}
+        \fi
+        \vspace*{4cm}
+
+        % Title
+        \huge{\textbf{\@title}}
+        \vspace*{2cm} 
+
+        % Authors
+        \small{\@author}
+        \vspace*{2cm} 
+
+        % Date
+        \small{Revision: \revision} \\
+        \small{Created: \@date} \\
+        \small{Updated: \daterevised}
+        \vfill
+
+        % Image and Department
+        \includegraphics[width=0.3\textwidth]{qut-logo.jpg}
+
+        \vspace*{0.5cm}
+        \textbf{Queensland University of Technology} \\
+        \small{\department}
+
+    \end{flushright}
+\end{titlepage}

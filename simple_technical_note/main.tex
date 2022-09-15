@@ -1,0 +1,54 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   LaTeX source code for a simple technical note
+% 	Developed by: J. Mount, j.mount@qut.edu.au
+%   Updated by:
+%	Last updated: 15-September-2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% PRE-AMBLE %%%
+\documentclass[11pt, a4paper, titlepage]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}    % sets margins
+
+\usepackage{graphicx}   % need for figures
+\usepackage{lipsum}     % dummy text
+
+%%% TITLE PAGE DETAILS %%%
+\title{Technical Note}
+
+\author{
+    Jane Doe\\
+    John Doe\\
+}
+
+% date details
+\date{\today}
+
+% revision
+\newcommand{\daterevised}{\today}
+\newcommand{\revision}{x.x}
+
+% department
+\newcommand{\department}{Research Engineering Facilities}
+
+% additional details about the technical note - comment out this line to remove
+\newcommand{\technotedetails}{QCR Project Y - Note Z}
+
+
+%%% DOCUMENT %%%
+\begin{document}
+
+    %%% TITLE PAGE %%%
+    \input{title.tex}
+
+
+    %%% SECTIONS %%%
+    \section*{Section X}
+    \lipsum[2-4]
+
+    \section*{Section Y}
+    \lipsum[3-6]
+
+    \section*{Section Z}
+    \lipsum[7-8]
+
+\end{document}
