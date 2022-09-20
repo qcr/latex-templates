@@ -14,13 +14,16 @@
 
         % Authors
         \small{\@author}
-        \vspace*{2cm} 
+        \vspace{2cm} 
 
         % Date
         \small{Revision: \revision} \\
         \small{Created: \@date} \\
         \ifdefined\daterevised
-            \small{Updated: \daterevised}
+            \small{Updated: \daterevised} \\
+        \fi
+        \ifdefined\datesubmitted
+            \small{Submitted: \datesubmitted}
         \fi
         \vfill
 

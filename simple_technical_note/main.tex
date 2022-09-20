@@ -7,9 +7,10 @@
 
 %%% PRE-AMBLE %%%
 \documentclass[11pt, a4paper, titlepage]{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}    % sets margins
+\usepackage[a4paper, total={6in, 9in}]{geometry}    % sets margins
 
 \usepackage{graphicx}   % need for figures
+\usepackage{fancyhdr}   % used for custom header
 \usepackage{lipsum}     % dummy text
 
 %%% TITLE PAGE DETAILS %%%
@@ -24,9 +25,10 @@
 \date{\today}
 \newcommand{\revision}{x.x}
 \newcommand{\daterevised}{\today} % comment out this line to remove
+\newcommand{\datesubmitted}{\today} % comment out this line to remove
 
 % department
-\newcommand{\department}{Research Engineering Facilities}
+\newcommand{\department}{School of Electrical Engineering and Robotics}
 
 % additional details about the technical note - comment out this line to remove
 \newcommand{\technotedetails}{QCR Project Y - Note Z}
@@ -38,6 +40,14 @@
     %%% TITLE PAGE %%%
     \input{title.tex}
 
+    %%% CUSTOM HEADERS & FOOTERS %%%
+    \pagestyle{fancy}
+    
+    \fancyhead{} % clear all header fields
+    \fancyhead[L]{\textbf{\@title}\\\technotedetails}
+
+    \fancyfoot{} % clear all footer fields
+    \fancyfoot[C]{\thepage}
 
     %%% SECTIONS %%%
     \section*{Section X}
