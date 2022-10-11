@@ -1,0 +1,117 @@
+%%% USER COMMANDS %%%
+
+% The work instruction title
+\newcommand{\Title}[1]{
+    \def\Title{#1}
+}
+
+% Specify the record number
+\newcommand{\RecordNumber}[1]{
+    \def\RecordNumber{#1}
+}
+
+% Specify the Risk Assessment Number
+\newcommand{\RiskAssessmentNumber}[1]{
+    \def\RiskAssessmentNumber{#1}
+}
+
+% Specify if training is required
+\providetoggle{trainingrequired}
+\newcommand{\TrainingRequired}[1]{
+    \settoggle{trainingrequired}{#1}
+}
+
+% Specify if CTO is required and the name of the CTO
+\providetoggle{cto_required}
+\NewDocumentCommand{\CTORequired}{ O{\textit{Filename TBD}} m }{
+    \settoggle{cto_required}{#2}
+    \def\NameOfCTO{#1}
+}
+
+% Emergency Procedure command
+\newcommand{\SetEmergencyProcedure}[1]{
+    \def\EmergencyProcedure{#1}
+}
+
+% Process commands
+\newcommand{\SetPreWorkProcess}[1]{
+    \def\PreWorkProcess{#1}
+}
+
+\newcommand{\SetWorkProcess}[1]{
+    \def\WorkProcess{#1}
+}
+
+\newcommand{\SetPostWorkProcess}[1]{
+    \def\PostWorkProcess{#1}
+}
+
+% Specify the author, their role, and the date the document was created
+\newcommand{\Author}[1]{
+    \def\Author{#1}
+}
+
+\newcommand{\AuthorRole}[1]{
+    \def\AuthorRole{#1}
+}
+
+\newcommand{\DateCreated}[1]{
+    \def\DateCreated{#1}
+}
+
+% Specify the verifier, their role, and the date the document was verified
+\newcommand{\Verifier}[1]{
+    \def\Verifier{#1}
+}
+\newcommand{\VerifierRole}[1]{
+    \def\VerifierRole{#1}
+}
+\newcommand{\DateVerified}[1]{
+    \def\DateVerified{#1}
+}
+
+% Specify the approver, their role, and the date the document was approved
+\newcommand{\Approver}[1]{
+    \def\Approver{#1}
+}
+\newcommand{\ApproverRole}[1]{
+    \def\ApproverRole{#1}
+}
+\newcommand{\DateApproved}[1]{
+    \def\DateApproved{#1}
+}
+
+
+%%% HELPER COMMANDS %%%
+
+\let\normalcaption\caption
+\newcounter{Figure}
+\setcounter{Figure}{0}
+
+% Command to include a symbol level with text in the tables
+\newsavebox\mybox
+\newcommand\includesymbol[2][]{\sbox{\mybox}{%
+  \includegraphics[#1]{#2}}\abovebaseline[-.5\ht\mybox]{%
+  \addstackgap{\usebox{\mybox}}}
+}
+
+% Create checklist 
+\newlist{checklist}{itemize}{2}
+\setlist[checklist]{label=$\square$}
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\checkeditem}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+
+%%% HEADERS & FOOTERS %%%
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+
+% Header
+\renewcommand{\headrulewidth}{0pt} % clear horizontal line
+\setlength\headheight{95pt} %% just to make warning go away. Adjust the value after looking into the warning.
+\chead{\includegraphics[width=0.95\textwidth]{images/qut-hse.png}}
+
+% Footer
+\renewcommand{\footrulewidth}{1pt} % clear horizontal line
+\lfoot{Last Modified: \today \\ Record Number: \RecordNumber}
+\rfoot{Page \thepage of \pageref{LastPage} \\ Uncontrolled when printed}

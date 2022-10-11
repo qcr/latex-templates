@@ -1,0 +1,235 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   LaTeX source code for a work instruction
+% 	Developed by: J. Mount, j.mount@qut.edu.au
+%   Updated by:
+%	Last updated: 11-October-2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% PRE-AMBLE %%%
+\documentclass[11pt, a4paper, titlepage]{article}
+\usepackage[a4paper, total={7in, 8in}]{geometry}    % sets margins
+
+\usepackage{graphicx}   % need for figures
+\usepackage{fancyhdr}   % used for custom header
+\usepackage{lipsum}
+\usepackage[table]{xcolor}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+\usepackage{pifont}
+\usepackage{booktabs}
+\usepackage{stackengine}
+\usepackage{ifthen}
+\usepackage{intcalc}
+\usepackage{tikz}
+\usepackage{xparse}
+\usepackage{longtable}
+\usepackage{capt-of}
+
+
+%%% INPUT PRE-AMBLE FILES %%%
+\input{setup.tex}
+\input{ppe.tex}
+\input{hazards.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% CONFIGURATION %%% - change stuff here
+%%%%%%%%%%%%%%%%%%%%%
+
+% Enter the title for the work instruction
+\Title{Work Instruction Title}
+
+% Enter the record number
+\RecordNumber{XXX}
+
+% Specify the Risk Assessment Number
+\RiskAssessmentNumber{XXX}
+
+% Specify if training is required
+\TrainingRequired{true}
+
+% Specify if CTO is required and the name of the CTO
+\CTORequired[Filename TBD]{true}
+
+% Specify the hazards/risks and set text
+% Each command can take two optional arguments to alter the bolded text and provide optional text
+% \AcidHazards[Change Bold Text][Optional Text]{true}
+\AcidHazards{true}
+\BiohazardHazards{true}
+\ElectrocutionHazards{true}
+\ExplosiveHazards{true}
+\FlammableHazards{true}
+\HighTemperatureHazards{true}
+\HotSurfaceHazards{true}
+\LowTemperatureHazards{true}
+\MagneticFieldHazards{true}
+\LoudNoiseHazards{true}
+\RadiationHazards{true}
+\RadioWaveHazards{true}
+\SlipHazards{true}
+\ToxicHazards{true}
+\TripHazards{true}
+
+% Specify the required ppe and set text
+% Each command can take two optional arguments to alter the bolded text and provide optional text
+% \AdjustableGuardRequired[Change Bold Text][Optional Text]{true}
+\AdjustableGuardRequired{true}
+\ApronRequired{true}
+\BreathingApparatusRequired{true}
+\CoatRequired{true}
+\DustMaskRequired{true}
+\EyeProtectionRequired{true}
+\FaceShieldRequired{true}
+\FootwearRequired{true}
+\GlovesRequired{true}
+\HalfFaceMaskRequired{true}
+\HardHatRequired{true}
+\HearingProtectionRequired{true}
+\HighVisRequired{true}
+\RespiratorRequired{true}
+\SafetyHarnessRequired{true}
+\StaticGuardRequired{true}
+\HandWashingRequired{true}
+\WeldingMaskRequired{true}
+
+
+% Specify the emergency procedure
+\SetEmergencyProcedure{
+    Add your emergency procedure here. You can create lists
+    \begin{itemize}[noitemsep]
+        \item Point 1
+        \item Point 2
+    \end{itemize}
+    \lipsum[4]
+}
+
+% Set Process
+\SetPreWorkProcess{
+    You can include figures
+    \makeatletter
+    \begin{center}
+        \includegraphics[width=50mm]{images/ppe/adjustable_guard.jpg}
+    \end{center}
+    And lists
+    \begin{enumerate}[noitemsep]
+        \item Step 1
+        \item Step 2
+    \end{enumerate}
+    
+    \lipsum[1]
+}
+
+\SetWorkProcess{
+    \lipsum[2]
+}
+
+\SetPostWorkProcess{
+    \lipsum[3]
+}
+
+% Specify the author, their role, and the date the document was created
+\Author{XXX}
+\AuthorRole{XXX}
+\DateCreated{XXX}
+
+% Specify the verifier, their role, and the date the document was verified
+\Verifier{XXX}
+\VerifierRole{XXX}
+\DateVerified{XXX}
+
+% Specify the approver, their role, and the date the document was approved
+\Approver{XXX}
+\ApproverRole{XXX}
+\DateApproved{XXX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% YOU SHOULDN'T NEED TO TOUCH ANYTHING BELOW HERE %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% DOCUMENT %%%
+\begin{document}
+
+    %%% TITLE %%%
+    \noindent
+    \huge{\textbf{Work Instruction}} \\
+    \huge{\textbf{\Title}}
+
+    %%% OVERVIEW TABLE %%%
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.2\textwidth}|p{0.75\textwidth}|}
+            \hline
+            \cellcolor{black!25}\textbf{Faculty/Division} & Research Infrastructure \\ \hline
+            \cellcolor{black!25}\textbf{Purpose} & This work instruction details how to safely setup, operate, and shut-down the Wazer Waterjet Cutter. \\ \hline
+            \rowcolor{black!25}\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{Applicable Documents}} \\ \hline
+            \multicolumn{2}{|p{0.95\textwidth}|}{This work instruction should be read in conjunction with information on the HSE resources page on QUT's Digital Workplace. If you do not have access to this information, speak to your supervisor.
+
+            Check the information applicable to this Work Instruction: \vspace{-2mm}
+            \begin{checklist}[noitemsep]
+                \item[\checkeditem] Risk Assessment No: \RiskAssessmentNumber
+                \iftoggle{trainingrequired}{\item[\checkeditem] Training Required}{}
+                \iftoggle{cto_required}{\item[\checkeditem] Competency to Operate Required -- Name of CTO: \NameOfCTO}{}
+            \end{checklist}
+            
+            \vspace{-2mm}\textbf{Please Note:} This work instruction does not replace a risk assessment. A risk asssessment should be completed prior to creating this work instruction to identify hazards, risks, and appropriate controls.} \\ \hline
+        \end{tabular}
+    \end{table}
+
+    %%% HAZARDS / RISKS %%%
+    \HazardsPresentTable
+
+    %%% PPE REQUIRED %%%
+    \PPERequiredTable
+
+    %%% EMERGENCY PROCEDURE %%%
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.975\textwidth}|}
+            \hline
+            \cellcolor{red!65}\textbf{Emergency Procedure} \\ \hline
+            \textbf{QUT Security Emergency Ph. 3138 888} \\
+            \textbf{Fire, Police, Ambulance Ph. 000 or 112 from a mobile} \\ \hline
+            \EmergencyProcedure \\ \hline
+        \end{tabular}
+    \end{table}
+
+    %%% PROCESS %%%
+    \begin{small}
+        \begin{longtable}{|p{0.97\textwidth}|}
+            \hline
+            \rowcolor{black!40} \textbf{Process} \\ \hline
+            \rowcolor{black!25} \textbf{Pre-Work} \\ \hline
+            \PreWorkProcess \\ \hline
+            \rowcolor{black!25} \textbf{Work} \\ \hline
+            \WorkProcess \\ \hline
+            \rowcolor{black!25} \textbf{Post-Work} \\ \hline
+            \PostWorkProcess \\ \hline
+        \end{longtable}
+    \end{small}
+
+
+    %%% DOCUMENT APPROVAL TABLE %%%
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|}
+            \hline
+            \rowcolor{black!40}\multicolumn{4}{|p{0.95\textwidth}|}{\textbf{Document Approval}} \\ \hline
+            \multicolumn{4}{|p{0.95\textwidth}|}{Once approved, this Work Instruction should be kept in accordance with your local area's record keeping procedures. A hard copy should be kept near areas where the work is being done.
+
+            These documents should be amended as required and reviewed every 5 years.} \\ \hline
+
+            \rowcolor{black!40} & \textbf{Name} & \textbf{Role} & \textbf{Date} \\ \hline
+            \cellcolor{black!15}Author & \Author & \AuthorRole & Created: \DateCreated \\ \hline
+            \cellcolor{black!15}Verifier & \Verifier & \VerifierRole & Verified: \DateVerified \\ \hline
+            \cellcolor{black!15}Approver & \Approver & \ApproverRole & Approved: \DateApproved \\ \hline
+
+            \cellcolor{black!40}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{XXX} \\ \hline
+        \end{tabular}
+    \end{table}
+
+    
+\end{document}

@@ -1,0 +1,229 @@
+%%% DEVELOPERS - HOW TO ADD A NEW PPE ITEM %%%
+%
+% 1. Add the PPE symbol to /images/ppe/
+%
+% 2. Create a toggle using the convention:
+%       \providetoggle{ppe_<lowercase-ppe-item-name>_required} 
+%
+% 3. Create a user command to set if the ppe item is required
+%       \NewDocumentCommand{\<camelcase-ppe-item-name>Required}{ O{<Default Bold Text>} O{} m }{
+%           \settoggle{ppe_<lowercase-ppe-item-name>_required}{#3}
+%           \def\<lowercase-ppe-item-name>Text{#1}
+%           \def\<lowercase-ppe-item-name>TextOptional{#2}
+%           \def\<lowercase-ppe-item-name>Image{<image-filename-with-extension>}
+%       }
+%
+% 4. Add <lowercase-ppe-item-name> to the \foreach command where the table data is generated as part of the \PPERequiredTable command
+
+
+%%% TOGGLES FOR PPE ITEMS %%%
+
+\providetoggle{ppe_adjustableguard_required}
+\providetoggle{ppe_apron_required}
+\providetoggle{ppe_breathingapparatus_required}
+\providetoggle{ppe_coat_required}
+\providetoggle{ppe_dustmask_required}
+\providetoggle{ppe_eyeprotection_required}
+\providetoggle{ppe_faceshield_required}
+\providetoggle{ppe_footwear_required}
+\providetoggle{ppe_gloves_required}
+\providetoggle{ppe_halffacemask_required}
+\providetoggle{ppe_hardhat_required}
+\providetoggle{ppe_hearing_required}
+\providetoggle{ppe_highvis_required}
+\providetoggle{ppe_respirator_required}
+\providetoggle{ppe_safetyharness_required}
+\providetoggle{ppe_staticguard_required}
+\providetoggle{ppe_washhands_required}
+\providetoggle{ppe_weldingmask_required}
+
+%%% USER COMMANDS TO SET REQUIRED PPE ITEMS %%%
+
+% Adjustable Guard
+\NewDocumentCommand{\AdjustableGuardRequired}{ O{Use the Adjustable Guard} O{} m }{
+    \settoggle{ppe_adjustableguard_required}{#3}
+    \def\adjustableguardText{#1}
+    \def\adjustableguardTextOptional{#2}
+    \def\adjustableguardImage{adjustable_guard.jpg}
+}
+
+% Apron
+\NewDocumentCommand{\ApronRequired}{ O{Wear a Protective Apron} O{} m }{
+    \settoggle{ppe_apron_required}{#3}
+    \def\apronText{#1}
+    \def\apronTextOptional{#2}
+    \def\apronImage{apron.jpg}
+}
+
+% Breathing Apparatus
+\NewDocumentCommand{\BreathingApparatusRequired}{ O{Use a Breathing Apparatus} O{} m }{
+    \settoggle{ppe_breathingapparatus_required}{#3}
+    \def\breathingapparatusText{#1}
+    \def\breathingapparatusTextOptional{#2}
+    \def\breathingapparatusImage{breathingapparatus.jpg}
+}
+
+% Coat
+\NewDocumentCommand{\CoatRequired}{ O{Wear A Coat} O{} m }{
+    \settoggle{ppe_coat_required}{#3}
+    \def\coatText{#1}
+    \def\coatTextOptional{#2}
+    \def\coatImage{coat.jpg}
+}
+
+% Dust Mask
+\NewDocumentCommand{\DustMaskRequired}{ O{Use A Dust Mask} O{} m }{
+    \settoggle{ppe_dustmask_required}{#3}
+    \def\dustmaskText{#1}
+    \def\dustmaskTextOptional{#2}
+    \def\dustmaskImage{dustmask.jpg}
+}
+
+% Eye Protection
+\NewDocumentCommand{\EyeProtectionRequired}{ O{Wear Eye Protection} O{} m }{
+    \settoggle{ppe_eyeprotection_required}{#3}
+    \def\eyeprotectionText{#1}
+    \def\eyeprotectionTextOptional{#2}
+    \def\eyeprotectionImage{eyeprotection.jpg}
+}
+
+% Face Shield
+\NewDocumentCommand{\FaceShieldRequired}{ O{Wear a Faceshield} O{} m }{
+    \settoggle{ppe_faceshield_required}{#3}
+    \def\faceshieldText{#1}
+    \def\faceshieldTextOptional{#2}
+    \def\faceshieldImage{faceshield.jpg}
+}
+
+% Footwear 
+\NewDocumentCommand{\FootwearRequired}{ O{Wear Protective Footwear} O{} m }{
+    \settoggle{ppe_footwear_required}{#3}
+    \def\footwearText{#1}
+    \def\footwearTextOptional{#2}
+    \def\footwearImage{footwear.jpg}
+}
+
+% Gloves
+\NewDocumentCommand{\GlovesRequired}{ O{Wear Protective Gloves} O{} m }{
+    \settoggle{ppe_gloves_required}{#3}
+    \def\glovesText{#1}
+    \def\glovesTextOptional{#2}
+    \def\glovesImage{gloves.jpg}
+}
+
+% Half Face Mask
+\NewDocumentCommand{\HalfFaceMaskRequired}{ O{Wear a Half Face Mask} O{} m }{
+    \settoggle{ppe_halffacemask_required}{#3}
+    \def\halffacemaskText{#1}
+    \def\halffacemaskTextOptional{#2}
+    \def\halffacemaskImage{halffacemask.jpg}
+}
+
+% Hard Hat
+\NewDocumentCommand{\HardHatRequired}{ O{Wear a Hard Hat} O{} m }{
+    \settoggle{ppe_hardhat_required}{#3}
+    \def\hardhatText{#1}
+    \def\hardhatTextOptional{#2}
+    \def\hardhatImage{hardhat.jpg}
+}
+
+% Hearing Protection
+\NewDocumentCommand{\HearingProtectionRequired}{ O{Wear Hearing Protection} O{} m }{
+    \settoggle{ppe_hearing_required}{#3}
+    \def\hearingText{#1}
+    \def\hearingTextOptional{#2}
+    \def\hearingImage{hearing.jpg}
+}
+
+% High Vis
+\NewDocumentCommand{\HighVisRequired}{ O{Wear High-Vis Clothing} O{} m }{
+    \settoggle{ppe_highvis_required}{#3}
+    \def\highvisText{#1}
+    \def\highvisTextOptional{#2}
+    \def\highvisImage{highvis.jpg}
+}
+
+% Respirator
+\NewDocumentCommand{\RespiratorRequired}{ O{Wear a Respirator} O{} m }{
+    \settoggle{ppe_respirator_required}{#3}
+    \def\respiratorText{#1}
+    \def\respiratorTextOptional{#2}
+    \def\respiratorImage{respirator.jpg}
+}
+
+% Safety Harness
+\NewDocumentCommand{\SafetyHarnessRequired}{ O{Wear a Safety Harness} O{} m }{
+    \settoggle{ppe_safetyharness_required}{#3}
+    \def\safetyharnessText{#1}
+    \def\safetyharnessTextOptional{#2}
+    \def\safetyharnessImage{safetyharness.jpg}
+}
+
+% Static Guard
+\NewDocumentCommand{\StaticGuardRequired}{ O{Use Static Guards} O{} m }{
+    \settoggle{ppe_staticguard_required}{#3}
+    \def\staticguardText{#1}
+    \def\staticguardTextOptional{#2}
+    \def\staticguardImage{staticguard.jpg}
+}
+
+% Wash Hands
+\NewDocumentCommand{\HandWashingRequired}{ O{Wash Hands Before \& Afte} O{} m }{
+    \settoggle{ppe_washhands_required}{#3}
+    \def\washhandsText{#1}
+    \def\washhandsTextOptional{#2}
+    \def\washhandsImage{washhands.jpg}
+}
+
+% Welding Mask
+\NewDocumentCommand{\WeldingMaskRequired}{ O{Wear a Welding Mask} O{} m }{
+    \settoggle{ppe_weldingmask_required}{#3}
+    \def\weldingmaskText{#1}
+    \def\weldingmaskTextOptional{#2}
+    \def\weldingmaskImage{welding_mask.jpg}
+}
+
+%%% COMMAND TO BUILD PPE REQUIRED TABLE %%%
+
+% Create PPE Table data
+\makeatletter
+\newcommand{\PPERequiredTable}{
+ 
+    % Build up dynamic table data
+    \def\tabledata{}
+    \newcounter{ppeitemcount}
+    \setcounter{ppeitemcount}{0}
+
+    % Loop through each PPE item and see if it's required add to the table data
+    \foreach \val in {adjustableguard, dustmask, apron, breathingapparatus, coat, dustmask, eyeprotection, faceshield, footwear, gloves, halffacemask, hardhat, hearing, highvis, respirator, safetyharness, staticguard, washhands, weldingmask}{% 
+        \iftoggle{ppe_\val_required}{% true
+            % Append table data to the variable
+            \protected@xappto\tabledata{\textbf{\csname\val Text\endcsname} \newline \textit{\csname\val TextOptional\endcsname} & \includesymbol[width=15mm]{images/ppe/\csname\val Image\endcsname} }
+            \addtocounter{ppeitemcount}{1}
+            \ifthenelse{\equal{\intcalcMod{\value{ppeitemcount}}{2}}{0}}{%true
+                % New row
+                \protected@xappto\tabledata{\\}
+            }{%else
+                % Continue row
+                \protected@xappto\tabledata{& &}
+            }
+        }{% false
+        }
+    }
+
+    % Finish row if required
+    \ifthenelse{\equal{\intcalcMod{\value{ppeitemcount}}{2}}{1}}{%true
+        \protected@xappto\tabledata{ & \\}
+    }{}
+    
+    % Make table
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.31\textwidth} c p{0.03\textwidth} p{0.31\textwidth} c|}
+            \hline
+            \rowcolor{black!25}\multicolumn{5}{|l|}{\textbf{PPE Required}} \\ \hline
+            \tabledata \hline
+        \end{tabular}
+    \end{table}
+}
+\makeatother
