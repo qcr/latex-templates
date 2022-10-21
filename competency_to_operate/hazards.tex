@@ -1,0 +1,214 @@
+%%% DEVELOPERS - HOW TO ADD A NEW HAZARD ITEM %%%
+%
+% 1. Add the Hazard symbol to /images/hazard/
+%
+% 2. Create a toggle using the convention (do not use underscores in name):
+%       \providetoggle{hazard_<lowercase-hazard-name>_present} 
+%
+% 3. Create a user command to set if the hazard is present (do not use underscores in names):
+%       \NewDocumentCommand{\<camelcase-hazard-name>Hazards}{ O{<Default Bold Text>} O{} m }{
+%           \settoggle{hazard_<lowercase-hazard-name>_present}{#3}
+%           \def\<lowercase-hazard-name>Text{#1}
+%           \def\<lowercase-hazard-name>TextOptional{#2}
+%           \def\<lowercase-hazard-name>Image{<image-filename-with-extension>}
+%       }
+%
+% 4. Add <lowercase-hazard-name> to the \foreach command where the table data is generated as part of the \HazardsTable command
+
+
+%%% TOGGLES FOR HAZARDS %%%
+
+\providetoggle{hazard_acid_present}
+\providetoggle{hazard_biohazard_present}
+\providetoggle{hazard_electrocution_present}
+\providetoggle{hazard_explosions_present}
+\providetoggle{hazard_flammable_present}
+\providetoggle{hazard_hightemps_present}
+\providetoggle{hazard_hotsurfaces_present}
+\providetoggle{hazard_lasers_present}
+\providetoggle{hazard_lowtemps_present}
+\providetoggle{hazard_magneticfields_present}
+\providetoggle{hazard_noise_present}
+\providetoggle{hazard_radiation_present}
+\providetoggle{hazard_radiowaves_present}
+\providetoggle{hazard_slip_present}
+\providetoggle{hazard_toxic_present}
+\providetoggle{hazard_trips_present}
+
+%%% USER COMMANDS TO SET PRESENT HAZARDS ITEMS %%%
+
+% Acid
+\NewDocumentCommand{\AcidHazards}{ O{Acids Present} O{} m }{
+    \settoggle{hazard_acid_present}{#3}
+    \def\acidText{#1}
+    \def\acidTextOptional{#2}
+    \def\acidImage{acids.jpg}
+}
+
+% Biohazards
+\NewDocumentCommand{\BiohazardHazards}{ O{Biohazard Risks} O{} m }{
+    \settoggle{hazard_biohazard_present}{#3}
+    \def\biohazardText{#1}
+    \def\biohazardTextOptional{#2}
+    \def\biohazardImage{biohazard.jpg}
+}
+
+
+% Electrocution
+\NewDocumentCommand{\ElectrocutionHazards}{ O{Electrocution Risks} O{} m }{
+    \settoggle{hazard_electrocution_present}{#3}
+    \def\electrocutionText{#1}
+    \def\electrocutionTextOptional{#2}
+    \def\electrocutionImage{electrocution.jpg}
+}
+
+% Explosives
+\NewDocumentCommand{\ExplosiveHazards}{ O{Explosives Present} O{} m }{
+    \settoggle{hazard_explosions_present}{#3}
+    \def\explosionsText{#1}
+    \def\explosionsTextOptional{#2}
+    \def\explosionsImage{explosions.jpg}
+}
+
+% Flammable
+\NewDocumentCommand{\FlammableHazards}{ O{Flammable Items Present} O{} m }{
+    \settoggle{hazard_flammable_present}{#3}
+    \def\flammableText{#1}
+    \def\flammableTextOptional{#2}
+    \def\flammableImage{flammable.jpg}
+}
+
+% High Temperatures
+\NewDocumentCommand{\HighTemperatureHazards}{ O{High Temperatures Present} O{} m }{
+    \settoggle{hazard_hightemps_present}{#3}
+    \def\hightempsText{#1}
+    \def\hightempsTextOptional{#2}
+    \def\hightempsImage{high_temps.jpg}
+}
+
+% Hot Surfaces
+\NewDocumentCommand{\HotSurfaceHazards}{ O{ Hot Surfaces Present} O{} m }{
+    \settoggle{hazard_hotsurfaces_present}{#3}
+    \def\hotsurfacesText{#1}
+    \def\hotsurfacesTextOptional{#2}
+    \def\hotsurfacesImage{hot_surfaces.jpg}
+}
+
+% Lasers
+\NewDocumentCommand{\LaserHazards}{ O{Lasers Present} O{} m }{
+    \settoggle{hazard_lasers_present}{#3}
+    \def\lasersText{#1}
+    \def\lasersTextOptional{#2}
+    \def\lasersImage{lasers.jpg}
+}
+
+% Low Temperatures
+\NewDocumentCommand{\LowTemperatureHazards}{ O{ Low Temperatures Present} O{} m }{
+    \settoggle{hazard_lowtemps_present}{#3}
+    \def\lowtempsText{#1}
+    \def\lowtempsTextOptional{#2}
+    \def\lowtempsImage{low_temps.jpg}
+}
+
+% Magnetic Fields
+\NewDocumentCommand{\MagneticFieldHazards}{ O{ Magnetic Fields Present} O{} m }{
+    \settoggle{hazard_magneticfields_present}{#3}
+    \def\magneticfieldsText{#1}
+    \def\magneticfieldsTextOptional{#2}
+    \def\magneticfieldsImage{magnetic_fields.jpg}
+}
+
+% Noise
+\NewDocumentCommand{\LoudNoiseHazards}{ O{ Noise Present} O{} m }{
+    \settoggle{hazard_noise_present}{#3}
+    \def\noiseText{#1}
+    \def\noiseTextOptional{#2}
+    \def\noiseImage{noise.jpg}
+}
+
+% Radiation
+\NewDocumentCommand{\RadiationHazards}{ O{Radiation Present} O{} m }{
+    \settoggle{hazard_radiation_present}{#3}
+    \def\radiationText{#1}
+    \def\radiationTextOptional{#2}
+    \def\radiationImage{radiation.jpg}
+}
+
+% Radio Waves
+\NewDocumentCommand{\RadioWaveHazards}{ O{ Radio Waves Present} O{} m }{
+    \settoggle{hazard_radiowaves_present}{#3}
+    \def\radiowavesText{#1}
+    \def\radiowavesTextOptional{#2}
+    \def\radiowavesImage{radiowaves.jpg}
+}
+
+% Slip
+\NewDocumentCommand{\SlipHazards}{ O{ Slip Hazards} O{} m }{
+    \settoggle{hazard_slip_present}{#3}
+    \def\slipText{#1}
+    \def\slipTextOptional{#2}
+    \def\slipImage{slip.jpg}
+}
+
+% Toxic
+\NewDocumentCommand{\ToxicHazards}{ O{Toxic Hazards Present} O{} m }{
+    \settoggle{hazard_toxic_present}{#3}
+    \def\toxicText{#1}
+    \def\toxicTextOptional{#2}
+    \def\toxicImage{toxic.jpg}
+}
+
+% Trips
+\NewDocumentCommand{\TripHazards}{ O{ Trip Hazards Present} O{} m }{
+    \settoggle{hazard_trips_present}{#3}
+    \def\tripsText{#1}
+    \def\tripsTextOptional{#2}
+    \def\tripsImage{trips.jpg}
+}
+
+
+
+%%% COMMAND TO BUILD HAZARDS TABLE %%%
+
+% Create PPE Table data
+\makeatletter
+\newcommand{\HazardsPresentTable}{
+ 
+    % Build up dynamic table data
+    \def\tabledata{}
+    \newcounter{hazarditemcount}
+    \setcounter{hazarditemcount}{0}
+
+    % Loop through each PPE item and see if it's required add to the table data
+    \foreach \val in {acid, biohazard, electrocution, explosions, flammable, hightemps, hotsurfaces, lasers, lowtemps, magneticfields, noise, radiation, radiowaves, slip, toxic, trips}{% 
+        \iftoggle{hazard_\val_present}{% true
+            % Append table data to the variable
+            \protected@xappto\tabledata{\textbf{\csname\val Text\endcsname} \newline \textit{\csname\val TextOptional\endcsname} & \includesymbol[width=15mm]{images/hazard/\csname\val Image\endcsname} }
+            \addtocounter{hazarditemcount}{1}
+            \ifthenelse{\equal{\intcalcMod{\value{hazarditemcount}}{2}}{0}}{%true
+                % New row
+                \protected@xappto\tabledata{\\}
+            }{%else
+                % Continue row
+                \protected@xappto\tabledata{& &}
+            }
+        }{% false
+        }
+    }
+
+    % Finish row if required
+    \ifthenelse{\equal{\intcalcMod{\value{hazarditemcount}}{2}}{1}}{%true
+        \protected@xappto\tabledata{ & \\}
+    }{}
+    
+    % Make table
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.31\textwidth} c p{0.03\textwidth} p{0.31\textwidth} c|}
+            \hline
+            \rowcolor{black!25}\multicolumn{5}{|l|}{\textbf{Hazards/Risks}} \\ \hline
+            \tabledata \hline
+        \end{tabular}
+    \end{table}
+}
+\makeatother

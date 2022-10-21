@@ -81,6 +81,11 @@
     \def\DateApproved{#1}
 }
 
+% Document review date command
+\newcommand{\ReviewDate}[1]{
+    \def\ReviewDate{#1}
+}
+
 
 %%% HELPER COMMANDS %%%
 
@@ -114,4 +119,4 @@
 % Footer
 \renewcommand{\footrulewidth}{1pt} % clear horizontal line
 \lfoot{Last Modified: \today \\ Record Number: \RecordNumber}
-\rfoot{Page \thepage of \pageref{LastPage} \\ Uncontrolled when printed}
+\rfoot{Page \thepage \ of \pageref{LastPage} \\ Uncontrolled when printed}

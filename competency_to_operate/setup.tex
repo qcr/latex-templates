@@ -1,0 +1,95 @@
+%%% USER COMMANDS %%%
+
+% The CTO title
+\newcommand{\Title}[1]{
+    \def\Title{#1}
+}
+
+% The name of the equipment
+\newcommand{\EquipmentName}[1]{
+    \def\EquipmentName{#1}
+}
+
+% Specify if CTO is required and the name of the CTO
+\providetoggle{supervisor_authorisation_required}
+\NewDocumentCommand{\SupervisorAuthorisationRequired}{ m }{
+    \settoggle{supervisor_authorisation_required}{#1}
+}
+
+% Process commands
+\newcommand{\SetFamiliarisationCheclist}[1]{
+    \def\FamiliarisationChecklist{#1}
+}
+
+\newcommand{\SetPreparationChecklist}[1]{
+    \def\PreparationChecklist{#1}
+}
+
+\newcommand{\SetWorkChecklist}[1]{
+    \def\WorkChecklist{#1}
+}
+
+\newcommand{\SetPostWorkChecklist}[1]{
+    \def\PostWorkChecklist{#1}
+}
+
+% Specify the author, their role, and the date the document was created
+\newcommand{\Author}[1]{
+    \def\Author{#1}
+}
+
+\newcommand{\AuthorRole}[1]{
+    \def\AuthorRole{#1}
+}
+
+\newcommand{\DateCreated}[1]{
+    \def\DateCreated{#1}
+}
+
+% Specify the verifier, their role, and the date the document was verified
+\newcommand{\Verifier}[1]{
+    \def\Verifier{#1}
+}
+\newcommand{\VerifierRole}[1]{
+    \def\VerifierRole{#1}
+}
+\newcommand{\DateVerified}[1]{
+    \def\DateVerified{#1}
+}
+
+% Specify the approver, their role, and the date the document was approved
+\newcommand{\Approver}[1]{
+    \def\Approver{#1}
+}
+\newcommand{\ApproverRole}[1]{
+    \def\ApproverRole{#1}
+}
+\newcommand{\DateApproved}[1]{
+    \def\DateApproved{#1}
+}
+
+% Document review date command
+\newcommand{\ReviewDate}[1]{
+    \def\ReviewDate{#1}
+}
+
+
+
+
+%%% HELPER COMMANDS %%%
+
+
+
+%%% HEADERS & FOOTERS %%%
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+
+% Header
+\renewcommand{\headrulewidth}{0pt} % clear horizontal line
+\setlength\headheight{95pt} %% just to make warning go away. Adjust the value after looking into the warning.
+\chead{\includegraphics[width=0.95\textwidth]{images/qut-hse.png}}
+
+% Footer
+\renewcommand{\footrulewidth}{1pt} % clear horizontal line
+\lfoot{Last Modified: \today}
+\rfoot{Page \thepage \ of \pageref{LastPage} \\  }

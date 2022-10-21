@@ -145,6 +145,9 @@
 \ApproverRole{XXX}
 \DateApproved{XXX}
 
+% Specify the date the WI is to be reviewed
+\ReviewDate{XXX}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% YOU SHOULDN'T NEED TO TOUCH ANYTHING BELOW HERE %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,6 +181,7 @@
             \vspace{-2mm}\textbf{Please Note:} This work instruction does not replace a risk assessment. A risk asssessment should be completed prior to creating this work instruction to identify hazards, risks, and appropriate controls.} \\ \hline
         \end{tabular}
     \end{table}
+    \normalsize
 
     %%% HAZARDS / RISKS %%%
     \HazardsPresentTable
@@ -198,18 +202,16 @@
     \end{table}
 
     %%% PROCESS %%%
-    \begin{small}
-        \begin{longtable}{|p{0.97\textwidth}|}
-            \hline
-            \rowcolor{black!40} \textbf{Process} \\ \hline
-            \rowcolor{black!25} \textbf{Pre-Work} \\ \hline
-            \PreWorkProcess \\ \hline
-            \rowcolor{black!25} \textbf{Work} \\ \hline
-            \WorkProcess \\ \hline
-            \rowcolor{black!25} \textbf{Post-Work} \\ \hline
-            \PostWorkProcess \\ \hline
-        \end{longtable}
-    \end{small}
+    \begin{longtable}{|p{0.97\textwidth}|}
+        \hline
+        \rowcolor{black!40} \textbf{Process} \\ \hline
+        \rowcolor{black!25} \textbf{Pre-Work} \\ \hline
+        \PreWorkProcess \\ \hline
+        \rowcolor{black!25} \textbf{Work} \\ \hline
+        \WorkProcess \\ \hline
+        \rowcolor{black!25} \textbf{Post-Work} \\ \hline
+        \PostWorkProcess \\ \hline
+    \end{longtable}
 
 
     %%% DOCUMENT APPROVAL TABLE %%%
@@ -220,14 +222,14 @@
             \rowcolor{black!40}\multicolumn{4}{|p{0.95\textwidth}|}{\textbf{Document Approval}} \\ \hline
             \multicolumn{4}{|p{0.95\textwidth}|}{Once approved, this Work Instruction should be kept in accordance with your local area's record keeping procedures. A hard copy should be kept near areas where the work is being done.
 
-            These documents should be amended as required and reviewed every 5 years.} \\ \hline
+            The document should be amended as required and reviewed every 5 years.} \\ \hline
 
             \rowcolor{black!40} & \textbf{Name} & \textbf{Role} & \textbf{Date} \\ \hline
             \cellcolor{black!15}Author & \Author & \AuthorRole & Created: \DateCreated \\ \hline
             \cellcolor{black!15}Verifier & \Verifier & \VerifierRole & Verified: \DateVerified \\ \hline
             \cellcolor{black!15}Approver & \Approver & \ApproverRole & Approved: \DateApproved \\ \hline
 
-            \cellcolor{black!40}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{XXX} \\ \hline
+            \cellcolor{black!40}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{\ReviewDate} \\ \hline
         \end{tabular}
     \end{table}
 

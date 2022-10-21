@@ -1,0 +1,222 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   LaTeX source code for a work instruction
+% 	Developed by: J. Mount, j.mount@qut.edu.au
+%   Updated by:
+%	Last updated: 11-October-2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% PRE-AMBLE %%%
+\documentclass[11pt, a4paper, titlepage]{article}
+\usepackage[a4paper, total={7in, 8in}]{geometry}    % sets margins
+
+\usepackage{graphicx}   % need for figures
+\usepackage{fancyhdr}   % used for custom header
+\usepackage{lipsum}
+\usepackage[table]{xcolor}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+% \usepackage{pifont}
+% \usepackage{booktabs}
+% \usepackage{stackengine}
+% \usepackage{ifthen}
+% \usepackage{intcalc}
+% \usepackage{tikz}
+% \usepackage{xparse}
+\usepackage{longtable}
+% \usepackage{capt-of}
+
+
+%%% INPUT PRE-AMBLE FILES %%%
+\input{setup.tex}
+% \input{ppe.tex}
+% \input{hazards.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% CONFIGURATION %%% - change stuff here
+%%%%%%%%%%%%%%%%%%%%%
+
+% Enter the title for the CTO instruction
+\Title{CTO Title}
+
+% Enter the name of the equipment
+\EquipmentName{EQUIPMENT}
+
+% Specify whether supervisor authorisation is required for CTO assessment to be completed
+\SupervisorAuthorisationRequired{true}
+
+% Set Process
+\SetFamiliarisationCheclist{
+    \begin{itemize}[noitemsep]
+        \item Task 1
+        \item Task 2
+    \end{itemize}
+}
+
+\SetPreparationChecklist{
+    \begin{itemize}[noitemsep]
+        \item Task A
+        \item Task B
+    \end{itemize}
+}
+
+\SetWorkChecklist{
+    \begin{itemize}[noitemsep]
+        \item Task I
+        \item Task II
+    \end{itemize}
+}
+
+\SetPostWorkChecklist{
+    \begin{itemize}[noitemsep]
+        \item Task a
+        \item Task b
+    \end{itemize}
+}
+
+% Specify the author, their role, and the date the document was created
+\Author{XXX}
+\AuthorRole{XXX}
+\DateCreated{XXX}
+
+% Specify the verifier, their role, and the date the document was verified
+\Verifier{XXX}
+\VerifierRole{XXX}
+\DateVerified{XXX}
+
+% Specify the approver, their role, and the date the document was approved
+\Approver{XXX}
+\ApproverRole{XXX}
+\DateApproved{XXX}
+
+% Specify the date the WI is to be reviewed
+\ReviewDate{XXX}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% YOU SHOULDN'T NEED TO TOUCH ANYTHING BELOW HERE %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% DOCUMENT %%%
+\begin{document}
+
+    %%% TITLE %%%
+    \noindent
+    \huge{\textbf{Competency to Operate}} \\
+    \huge{\textbf{\Title}}
+
+    %%% GUIDELINES %%%
+    \normalsize
+    \section{Guidelines}
+    \subsection{Guidelines for the Prospective User/Assessor}
+    \begin{itemize}[noitemsep]
+        \item A prospective user/assessor should read through any associated HSE documentation including, but not limited to, any Risk Assessments (RA) or Work Instructions (WI) associated with the equipment prior to assessment.
+        \item A prospective user/assessor should request practical training prior to competency assessment.
+        \item A competency to operate (CTO) certificate will expire in five years from the date of issue. It is up to the user to be re-certified after five years. If the user has consistently used the equipment over the past five years, a supervisor can deem the user competent without further assessment. If the equipment has not been consistently used a new assessment will need to be undertaken.
+        \item The completed CTO shall be stored, digitally or physically, by the user and a copy, digitally or physically, provided to their supervisor.
+        \item Gaining competency in this equipment does not mean you automatically gain competency in and are allowed to operate similar pieces of equipment, unless specifically stated. A CTO must be gained in each piece of equipment.
+    \end{itemize}
+    \subsection{Guidelines for the Assessor}
+    \begin{itemize}[noitemsep]
+        \item This assessment is to be completed after the prospective user has had a practical demonstration of the operation of the equipment.
+        \item The prospective user may use the manufacturer's handbook, work instruction(s), QUT documentation, or other any other information source except for personnel, as an aid if reuqired.
+        \item Assess the prospective user completing given tasks under normal working conditions.
+        \item The prospective user must be signed off as competent in all sections (as instructed) before being deemed competent to operate the equipment covered by this assessment. Assessor's initials are required in each section.
+        \item The prospective user must be notified of any area(s) where they are assessed as not yet competent. This will allow the prospective user to arrange for further training in this area.
+    \end{itemize}
+    \newpage
+
+    %%% SUPERVISOR APPROVAL %%%
+    \iftoggle{supervisor_authorisation_required}{
+        \section{Supervisor Authorisation}
+        \vspace{-5mm}
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|p{0.7\textwidth}|}
+                \hline
+                \rowcolor{black!30}\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{Please Perform a Competency to Operate Assessment for:}} \\ \hline
+                \cellcolor{black!15}User's Name & \\ \hline
+                \cellcolor{black!15}Staff / Student Number & \\ \hline
+                \cellcolor{black!15}Equipment Name & \EquipmentName \\ \hline
+                \rowcolor{black!30}\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{Authorised by:}} \\ \hline
+                \cellcolor{black!15}Supervisor's Name & \\ \hline
+                \cellcolor{black!15}Signature & \\ \hline
+                \cellcolor{black!15}Date & \\ \hline
+                
+            \end{tabular}
+        \end{table}
+    }{}
+
+    %%% ASSESSOR'S REPORT %%%
+    \section{Assessor's Report}
+    \vspace{-5mm}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|p{0.15\textwidth} p{0.3\textwidth}|}
+            \hline
+            \rowcolor{black!30}\multicolumn{3}{|p{0.95\textwidth}|}{\textbf{User to Complete}} \\ \hline
+            \cellcolor{black!15}User's Name & & \\ \hline
+            \cellcolor{black!15}Signature & & \\ \hline
+            \cellcolor{black!15}Date & & \\ \hline 
+            \rowcolor{black!30}\multicolumn{3}{|p{0.95\textwidth}|}{\textbf{Assessor to Complete}} \\ \hline
+            \cellcolor{black!15}Competency Result & $\square$ Competent & $\Box$ Not Yet Competent \\ \hline
+            \cellcolor{black!15}Able to Assess Competency & $\square$ Yes & $\Box$ N/A \\ \hline
+            \cellcolor{black!15}Assessor's Name & & \\ \hline
+            \cellcolor{black!15}Signature & & \\ \hline
+            \cellcolor{black!15}Date & & \\ \hline            
+        \end{tabular}
+    \end{table}
+
+    %%% CTO TASK CHECKLIST %%%
+    \section{CTO Task Checklist}
+    \vspace{-5mm}    
+    \begin{longtable}{|p{0.6\textwidth}|c|p{0.19\textwidth}|}
+        \hline
+        \rowcolor{black!30} \textbf{Tasks} & \textbf{Competent} & \hspace{7mm}\textbf{Comments} \\ \hline
+
+        % Familiarisation
+        \rowcolor{black!15} \multicolumn{3}{|p{0.96\textwidth}|}{\textbf{Section 1: Equipment Familiarisation}} \\ \hline
+        \vspace{-5mm}
+        \FamiliarisationChecklist & & \\ \hline
+
+        % Preparation
+        \rowcolor{black!15} \multicolumn{3}{|p{0.96\textwidth}|}{\textbf{Section 2: Preparation}} \\ \hline
+        \vspace{-5mm}
+        \PreparationChecklist & & \\ \hline
+
+        % Work
+        \rowcolor{black!15} \multicolumn{3}{|p{0.96\textwidth}|}{\textbf{Section 3: Work}} \\ \hline
+        \vspace{-5mm}
+        \WorkChecklist & & \\ \hline
+
+        % Post Work
+        \rowcolor{black!15} \multicolumn{3}{|p{0.96\textwidth}|}{\textbf{Section 4: Post Work}} \\ \hline
+        \vspace{-5mm}
+        \PostWorkChecklist & & \\ \hline
+    \end{longtable}
+
+    %%% DOCUMENT APPROVAL TABLE %%%
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|}
+            \hline
+            \rowcolor{black!40}\multicolumn{4}{|p{0.973\textwidth}|}{\textbf{Document Approval}} \\ \hline
+            \multicolumn{4}{|p{0.95\textwidth}|}{Once approved, this CTO Instruction should be kept in accordance with your local area's record keeping procedures. A hard copy should be kept near areas where the work is being done.
+
+            The document should be amended as required and reviewed every 5 years.} \\ \hline
+
+            \rowcolor{black!40} & \textbf{Name} & \textbf{Role} & \textbf{Date} \\ \hline
+            \cellcolor{black!15}Author & \Author & \AuthorRole & Created: \DateCreated \\ \hline
+            \cellcolor{black!15}Verifier & \Verifier & \VerifierRole & Verified: \DateVerified \\ \hline
+            \cellcolor{black!15}Approver & \Approver & \ApproverRole & Approved: \DateApproved \\ \hline
+
+            \cellcolor{black!40}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{\ReviewDate} \\ \hline
+        \end{tabular}
+    \end{table}
+
+    
+\end{document}
