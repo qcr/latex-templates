@@ -73,6 +73,11 @@
     \def\ReviewDate{#1}
 }
 
+% Document version
+\newcommand{\Version}[1]{
+    \def\Version{#1}
+}
+
 
 
 
@@ -91,5 +96,5 @@
 
 % Footer
 \renewcommand{\footrulewidth}{1pt} % clear horizontal line
-\lfoot{Last Modified: \today}
-\rfoot{Page \thepage \ of \pageref{LastPage} \\  }
+\lfoot{Last Modified: \today \\ Research Infrastructure - Research Engineering Facilities}
+\rfoot{Page \thepage \ of \pageref{LastPage} \\ Version: \Version}

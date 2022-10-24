@@ -5,11 +5,6 @@
     \def\Title{#1}
 }
 
-% Specify the record number
-\newcommand{\RecordNumber}[1]{
-    \def\RecordNumber{#1}
-}
-
 % Specify the Risk Assessment Number
 \newcommand{\RiskAssessmentNumber}[1]{
     \def\RiskAssessmentNumber{#1}
@@ -86,6 +81,11 @@
     \def\ReviewDate{#1}
 }
 
+% Document version
+\newcommand{\Version}[1]{
+    \def\Version{#1}
+}
+
 
 %%% HELPER COMMANDS %%%
 
@@ -118,5 +118,5 @@
 
 % Footer
 \renewcommand{\footrulewidth}{1pt} % clear horizontal line
-\lfoot{Last Modified: \today \\ Record Number: \RecordNumber}
-\rfoot{Page \thepage \ of \pageref{LastPage} \\ Uncontrolled when printed}
+\lfoot{Last Modified: \today \\ Research Infrastructure - Research Engineering Facilities}
+\rfoot{Page \thepage \ of \pageref{LastPage} \\ Version: \Version}
