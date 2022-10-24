@@ -25,9 +25,7 @@
 \usepackage{intcalc}
 \usepackage{tikz}
 \usepackage{xparse}
-\usepackage{longtable}
-\usepackage{capt-of}
-
+\usepackage[section]{placeins}
 
 %%% INPUT PRE-AMBLE FILES %%%
 \input{setup.tex}
@@ -42,14 +40,22 @@
 % Enter the title for the work instruction
 \Title{Work Instruction Title}
 
+% Enter Faculty/Divsision
+\Faculty{Research Infrastructure - Research Engineering Facility}
+
+% Enter Work Instruction Purpose
+\Purpose{Purpose of WI is...}
+
 % Specify the Risk Assessment Number
 \RiskAssessmentNumber{XXX}
 
-% Specify if training is required
-\TrainingRequired{true}
+% List the applicable documents
+\SetApplicableDocuments{
+    \item Competency to Operate Required - Filename TBD
+}
 
-% Specify if CTO is required and the name of the CTO
-\CTORequired[Filename TBD]{true}
+% Specify if training required before operation
+\TrainingRequired{true}
 
 % Specify the hazards/risks and set text
 % Each command can take two optional arguments to alter the bolded text and provide optional text
@@ -64,6 +70,7 @@
 \LowTemperatureHazards{true}
 \MagneticFieldHazards{true}
 \LoudNoiseHazards{true}
+\PinchPointHazards{true}
 \RadiationHazards{true}
 \RadioWaveHazards{true}
 \SlipHazards{true}
@@ -107,9 +114,12 @@
 \SetPreWorkProcess{
     You can include figures
     \makeatletter
-    \begin{center}
+    \begin{figure}[h]
+        \centering
         \includegraphics[width=50mm]{images/ppe/adjustable_guard.jpg}
-    \end{center}
+        \caption{Look a figure}
+    \end{figure}
+    \\
     And lists
     \begin{enumerate}[noitemsep]
         \item Step 1
@@ -142,7 +152,7 @@
 \ApproverRole{XXX}
 \DateApproved{XXX}
 
-% Specify the date the WI is to be reviewed
+% Specify the date the WI is to be reviewed (should be at least every 5 years)
 \ReviewDate{XXX}
 
 % Specify the document version, should only be changed when content changes not format
@@ -153,6 +163,15 @@
 %%% YOU SHOULDN'T NEED TO TOUCH ANYTHING BELOW HERE %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%% PLACE INS FLOAT BARRIER %%%
+
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
 
 %%% DOCUMENT %%%
 \begin{document}
@@ -161,36 +180,41 @@
     \noindent
     \huge{\textbf{Work Instruction}} \\
     \huge{\textbf{\Title}}
+    \vspace{-5mm}
 
     %%% OVERVIEW TABLE %%%
+    \section{Overview}
+    \normalsize
+    \vspace{-5mm}
+    This work instruction should be read in conjunction with information on the HSE resources page on QUT's Digital Workplace. If you do not have access to this information, speak to your supervisor. \textbf{Please note}, This work instruction does not replace a risk assessment. A risk asssessment should be completed prior to creating this work instruction to identify hazards, risks, and appropriate controls.
     \begin{table}[H]
         \centering
         \begin{tabular}{|p{0.2\textwidth}|p{0.75\textwidth}|}
             \hline
-            \cellcolor{black!25}\textbf{Faculty/Division} & Research Infrastructure \\ \hline
-            \cellcolor{black!25}\textbf{Purpose} & This work instruction details how to safely setup, operate, and shut-down the Wazer Waterjet Cutter. \\ \hline
-            \rowcolor{black!25}\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{Applicable Documents}} \\ \hline
-            \multicolumn{2}{|p{0.95\textwidth}|}{This work instruction should be read in conjunction with information on the HSE resources page on QUT's Digital Workplace. If you do not have access to this information, speak to your supervisor.
-
-            Check the information applicable to this Work Instruction: \vspace{-2mm}
-            \begin{checklist}[noitemsep]
-                \item[\checkeditem] Risk Assessment No: \RiskAssessmentNumber
-                \iftoggle{trainingrequired}{\item[\checkeditem] Training Required}{}
-                \iftoggle{cto_required}{\item[\checkeditem] Competency to Operate Required -- Name of CTO: \NameOfCTO}{}
-            \end{checklist}
-            
-            \vspace{-2mm}\textbf{Please Note:} This work instruction does not replace a risk assessment. A risk asssessment should be completed prior to creating this work instruction to identify hazards, risks, and appropriate controls.} \\ \hline
+            \cellcolor{black!25}\textbf{Faculty/Division} & \Faculty \\ \hline
+            \cellcolor{black!25}\textbf{Purpose} & \Purpose \\ \hline
+            \cellcolor{black!25}\textbf{Training Required} & \iftoggle{trainingrequired}{CTO Certificate is \textbf{required} before use}{Training is not required prior to use} \\ \hline
+            \rowcolor{black!25}\multicolumn{2}{|p{0.975\textwidth}|}{\textbf{Applicable Documents}} \\ \hline
+            \multicolumn{2}{|p{0.95\textwidth}|}{
+            \vspace{-3mm}
+            \begin{itemize}[noitemsep]
+                \item Risk Assessment No: \RiskAssessmentNumber
+                \ApplicableDocuments
+            \end{itemize}
+            } \\ \hline
         \end{tabular}
     \end{table}
-    \normalsize
 
     %%% HAZARDS / RISKS %%%
+    \section{Hazards and PPE}
     \HazardsPresentTable
 
     %%% PPE REQUIRED %%%
     \PPERequiredTable
 
     %%% EMERGENCY PROCEDURE %%%
+    \newpage
+    \section{Emergency Procedure}
     \begin{table}[H]
         \centering
         \begin{tabular}{|p{0.975\textwidth}|}
@@ -203,34 +227,34 @@
     \end{table}
 
     %%% PROCESS %%%
-    \begin{longtable}{|p{0.97\textwidth}|}
-        \hline
-        \rowcolor{black!40} \textbf{Process} \\ \hline
-        \rowcolor{black!25} \textbf{Pre-Work} \\ \hline
-        \PreWorkProcess \\ \hline
-        \rowcolor{black!25} \textbf{Work} \\ \hline
-        \WorkProcess \\ \hline
-        \rowcolor{black!25} \textbf{Post-Work} \\ \hline
-        \PostWorkProcess \\ \hline
-    \end{longtable}
+    \newpage
+    \section{Process}
+
+    \subsection{Pre-Work}
+    \PreWorkProcess
+
+    \subsection{Work}
+    \WorkProcess
+
+    \subsection{Post-Work}
+    \PostWorkProcess
 
 
     %%% DOCUMENT APPROVAL TABLE %%%
+    \section{Document Approval}
+    Once approved, this Work Instruction should be kept in accordance with your local area's record keeping procedures. A hard copy should be kept near areas where the work is being done. The document should be amended as required and reviewed every 5 years.
+
     \begin{table}[H]
         \centering
         \begin{tabular}{|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|p{0.225\textwidth}|}
             \hline
-            \rowcolor{black!40}\multicolumn{4}{|p{0.95\textwidth}|}{\textbf{Document Approval}} \\ \hline
-            \multicolumn{4}{|p{0.95\textwidth}|}{Once approved, this Work Instruction should be kept in accordance with your local area's record keeping procedures. A hard copy should be kept near areas where the work is being done.
 
-            The document should be amended as required and reviewed every 5 years.} \\ \hline
+            \rowcolor{black!25} & \textbf{Name} & \textbf{Role} & \textbf{Date} \\ \hline
+            \cellcolor{black!25}\textbf{Author} & \Author & \AuthorRole & Created: \DateCreated \\ \hline
+            \cellcolor{black!25}\textbf{Verifier} & \Verifier & \VerifierRole & Verified: \DateVerified \\ \hline
+            \cellcolor{black!25}\textbf{Approver} & \Approver & \ApproverRole & Approved: \DateApproved \\ \hline
 
-            \rowcolor{black!40} & \textbf{Name} & \textbf{Role} & \textbf{Date} \\ \hline
-            \cellcolor{black!15}Author & \Author & \AuthorRole & Created: \DateCreated \\ \hline
-            \cellcolor{black!15}Verifier & \Verifier & \VerifierRole & Verified: \DateVerified \\ \hline
-            \cellcolor{black!15}Approver & \Approver & \ApproverRole & Approved: \DateApproved \\ \hline
-
-            \cellcolor{black!40}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{\ReviewDate} \\ \hline
+            \cellcolor{black!25}\textbf{Date for Review} & \multicolumn{3}{|p{0.724\textwidth}|}{\ReviewDate} \\ \hline
         \end{tabular}
     \end{table}
 

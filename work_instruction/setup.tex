@@ -5,22 +5,30 @@
     \def\Title{#1}
 }
 
+% The Faculty/Divsision
+\newcommand{\Faculty}[1]{
+    \def\Faculty{#1}
+}
+
+% The WI Purpose
+\newcommand{\Purpose}[1]{
+    \def\Purpose{#1}
+}
+
 % Specify the Risk Assessment Number
 \newcommand{\RiskAssessmentNumber}[1]{
     \def\RiskAssessmentNumber{#1}
 }
 
 % Specify if training is required
+\newcommand{\SetApplicableDocuments}[1]{
+    \def\ApplicableDocuments{#1}
+}
+
+% Specify if training is required
 \providetoggle{trainingrequired}
 \newcommand{\TrainingRequired}[1]{
     \settoggle{trainingrequired}{#1}
-}
-
-% Specify if CTO is required and the name of the CTO
-\providetoggle{cto_required}
-\NewDocumentCommand{\CTORequired}{ O{\textit{Filename TBD}} m }{
-    \settoggle{cto_required}{#2}
-    \def\NameOfCTO{#1}
 }
 
 % Emergency Procedure command

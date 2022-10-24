@@ -29,6 +29,7 @@
 \providetoggle{hazard_lowtemps_present}
 \providetoggle{hazard_magneticfields_present}
 \providetoggle{hazard_noise_present}
+\providetoggle{hazard_pinchpoints_present}
 \providetoggle{hazard_radiation_present}
 \providetoggle{hazard_radiowaves_present}
 \providetoggle{hazard_slip_present}
@@ -126,6 +127,14 @@
     \def\noiseImage{noise.jpg}
 }
 
+% Pinch Points
+\NewDocumentCommand{\PinchPointHazards}{ O{ Pinch Points Present} O{} m }{
+    \settoggle{hazard_pinchpoints_present}{#3}
+    \def\pinchpointsText{#1}
+    \def\pinchpointsTextOptional{#2}
+    \def\pinchpointsImage{pinch-points.jpg}
+}
+
 % Radiation
 \NewDocumentCommand{\RadiationHazards}{ O{Radiation Present} O{} m }{
     \settoggle{hazard_radiation_present}{#3}
@@ -180,7 +189,7 @@
     \setcounter{hazarditemcount}{0}
 
     % Loop through each PPE item and see if it's required add to the table data
-    \foreach \val in {acid, biohazard, electrocution, explosions, flammable, hightemps, hotsurfaces, lasers, lowtemps, magneticfields, noise, radiation, radiowaves, slip, toxic, trips}{% 
+    \foreach \val in {acid, biohazard, electrocution, explosions, flammable, hightemps, hotsurfaces, lasers, lowtemps, magneticfields, noise, pinchpoints, radiation, radiowaves, slip, toxic, trips}{% 
         \iftoggle{hazard_\val_present}{% true
             % Append table data to the variable
             \protected@xappto\tabledata{\textbf{\csname\val Text\endcsname} \newline \textit{\csname\val TextOptional\endcsname} & \includesymbol[width=15mm]{images/hazard/\csname\val Image\endcsname} }
