@@ -5,4 +5,5 @@ This contains various templates specific to QUT and QCR that you may find useful
 ## Available Templates
 
 - [Simple Technical Note](/simple_technical_note/) - basic lightweight template for producing simple technical notes.
-- [Work Instruction](/work_instruction_/) - a template for producing work instruction templates.
+- [Work Instruction](/work_instruction_/) - a template for producing work instructions.
+- [Compentency To Operate](/compentency_to_operate/) - a template for producing CTOs.
