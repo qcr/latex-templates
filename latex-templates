@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+#
+# The main script that prompts user selection, processes inputs, and performs
+# the file manipulation
+#
+# Please see https://github.com/qcr/latex-templates for full details on how
+# things work, and instructions on how to add your own templates. The more
+# templates the merrier!
+
+#################
+### VARIABLES ###
+#################
+
+# The name of this script, and the directory where it is located
+SCRIPT_NAME="$(basename $(readlink -f $0))"
+SCRIPT_DIR="$(dirname $(readlink -f $0))"
+
+# Temporary location to install latest templates
+TMP_LOCATION="/tmp/qcr_latex_templates"
+
+# Source location for template selection
+# Use local location if set, else use tmp location
+# Local location is useful for development
+SOURCE_LOCATION="$([ -z "${LOCAL_LOCATION:-}" ] && echo "$TMP_LOCATION" || echo "$LOCAL_LOCATION")"
+
+# Screen Reset
+RESET='\033[0m'
+
+# Screen Colors
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+
+# Screen helpers
+INFO="${GREEN}[INFO]${RESET} "
+WARN="${YELLOW}[WARN]${RESET} "
+ERROR="${RED}[ERROR]${RESET} "
+
+
+#################
+### FUNCTIONS ###
+#################
+
+function print_usage(){
+    printf "\nCreates a new latex file/folder structure using a code template. 
+
+    Usage:
+        latex-templates [-h|--help] <TEMPLATE>
+
+    Arguments:
+        <TEMPLATE>  the template to use. Each folder defines a different template.
+                    See https://github.com/qcr/latex-templates for potential templates.
+    
+    Example:
+        Create new work instruction: mkdir new_wi && cd new_wi && latex-templates work_instruction
+
+"
+}
+
+###################
+### MAIN SCRIPT ###
+###################
+
+# Parse Args
+PARSED_ARGS=$(getopt -a -n ${SCRIPT_NAME} -o 'h' --long 'help' -- "$@")
+eval set -- "${PARSED_ARGS}"
+while true; do
+case "$1" in 
+    -h|--help) 
+    print_usage ;;
+    # -- indicates end of arguments, break while loop
+    --) shift; break ;;
+    # invalid option was passed, print usage
+    *)
+    printf "${ERROR}Unrecognized option '$1'\n" 
+    print_usage 
+    exit 1 ;;    
+esac
+done
+
+# Error if bash is too old
+if [ "$(echo $BASH_VERSION | sed 's/^\([0-9]\)*\..*/\1/')" -lt 4 ]; then
+  printf "${ERROR}%s\n\t%s\n" "Bash version 4.0+ is required. Detected:" \
+    "$BASH_VERSION"
+  exit 1
+fi
+
+# Get a local copy of the templates repo
+printf "${INFO}Getting latest templates"
+if [ -d "$TMP_LOCATION" ]; then rm -rf "$TMP_LOCATION"; fi
+mkdir -p "$TMP_LOCATION"
+git clone --depth 1 -b main https://github.com/qcr/latex-templates \
+  "$TMP_LOCATION"
+printf "Done\n"
+
+# Each directory denotes a valid template, process the user's selection
+template="${1:-}"
+templates=($(find "$SOURCE_LOCATION" -mindepth 1 -maxdepth 1 -type d \
+  -not -name '.*' -exec basename {} \;))
+if [ -z "$template" ] || ! printf '%s\n' "${templates[@]}" | \
+    grep -q "^$1$"; then
+  selection=0
+  while [ "$selection" -eq 0 ] || [ "$selection" -gt "${#templates[@]}" ]; do
+    printf "${YELLOW}Invalid template provided ('${1:-}'). Select from the options:"
+      for i in "${!templates[@]}"; do 
+        printf "\n\t[$((i+1))] %s" "${templates[i]}"
+      done
+    printf "\n\nSelection: ${RESET}"
+    read -n1 selection
+    if ! [[ "$selection" =~ ^[0-9]+$ ]]; then selection=0; fi
+  done
+  template="${templates[$((selection-1))]}"
+  printf "\n\nProceeding with '$template'...\n"
+fi
+
+
+# Create from template in local directory
+printf "${INFO}Creating project from template"
+rsync -avL "$SOURCE_LOCATION/$template/" .
