@@ -55,19 +55,21 @@ function print_usage(){
         Create new work instruction: mkdir new_wi && cd new_wi && latex-templates work_instruction
 
 "
+
+    exit 0
 }
 
 ###################
 ### MAIN SCRIPT ###
 ###################
 
+
 # Parse Args
 PARSED_ARGS=$(getopt -a -n ${SCRIPT_NAME} -o 'h' --long 'help' -- "$@")
 eval set -- "${PARSED_ARGS}"
 while true; do
 case "$1" in 
-    -h|--help) 
-    print_usage ;;
+    -h|--help) print_usage ;;
     # -- indicates end of arguments, break while loop
     --) shift; break ;;
     # invalid option was passed, print usage
