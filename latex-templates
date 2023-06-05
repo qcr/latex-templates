@@ -45,19 +45,32 @@ ERROR="${RED}[ERROR]${RESET} "
 function print_usage(){
     printf "\nCreates a new latex file/folder structure using a code template. 
 
-    Usage:
-        latex-templates [-h|--help] <TEMPLATE>
+Usage:
+    latex-templates [-h|--help] [<TEMPLATE>]
 
-    Arguments:
-        <TEMPLATE>  the template to use. Each folder defines a different template.
-                    See https://github.com/qcr/latex-templates for potential templates.
-    
-    Example:
-        Create new work instruction: mkdir new_wi && cd new_wi && latex-templates work_instruction
+Arguments:
+    <TEMPLATE>  the template to use, or leave blank to be prompted with selection.
 
+Templates:
+"
+
+    TEMPLATES="$(get_templates)"
+    for i in $TEMPLATES; do
+        printf "    > $i\n"
+    done
+
+    printf "\nExample:
+    Create new work instruction: mkdir new_wi && cd new_wi && latex-templates work_instruction
 "
 
 }
+
+
+function get_templates() {
+    TEMPLATES=($(find "${SCRIPT_DIR}" -mindepth 1 -maxdepth 1 -type d -not -name ".*" -exec basename {} \;))
+    echo "${TEMPLATES[@]}"
+}
+
 
 function display_heading() {
     # Prints a heading to the screen
