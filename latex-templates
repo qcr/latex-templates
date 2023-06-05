@@ -98,7 +98,22 @@ function display_heading() {
 
 
 # Display heading
-display_heading "QCR Latex Templates"
+display_heading "QCR LATEX TEMPLATES"
+
+# Error if bash is too old
+if [ "$(echo $BASH_VERSION | sed 's/^\([0-9]\)*\..*/\1/')" -lt 4 ]; then
+  printf "${ERROR}%s\n\t%s\n" "Bash version 4.0+ is required. Detected:" \
+    "$BASH_VERSION"
+  exit 1
+fi
+
+# Get a local copy of the templates repo
+printf "${INFO}Getting latest templates"
+if [ -d "$TMP_LOCATION" ]; then rm -rf "$TMP_LOCATION"; fi
+mkdir -p "$TMP_LOCATION"
+git clone --depth 1 -b main https://github.com/qcr/latex-templates \
+  "$TMP_LOCATION"
+printf "Done\n\n"
 
 # Parse Args
 PARSED_ARGS=$(getopt -a -n ${SCRIPT_NAME} -o 'h' --long 'help' -- "$@")
@@ -115,21 +130,6 @@ case "$1" in
     exit 1 ;;    
 esac
 done
-
-# Error if bash is too old
-if [ "$(echo $BASH_VERSION | sed 's/^\([0-9]\)*\..*/\1/')" -lt 4 ]; then
-  printf "${ERROR}%s\n\t%s\n" "Bash version 4.0+ is required. Detected:" \
-    "$BASH_VERSION"
-  exit 1
-fi
-
-# Get a local copy of the templates repo
-printf "${INFO}Getting latest templates"
-if [ -d "$TMP_LOCATION" ]; then rm -rf "$TMP_LOCATION"; fi
-mkdir -p "$TMP_LOCATION"
-git clone --depth 1 -b main https://github.com/qcr/latex-templates \
-  "$TMP_LOCATION"
-printf "Done\n\n"
 
 # Get list of templates - each directory denotes a valid template
 templates=($(find "$SOURCE_LOCATION" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -exec basename {} \;))
